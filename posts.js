@@ -31,7 +31,7 @@
         
         let commentName = document.createElement('p');
         commentName.classList.add('comment-name');
-        
+
         let commentParagraph = document.createElement('p');
         commentParagraph.classList.add('comment-paragraph');
 
@@ -48,9 +48,8 @@
         allPostsWrapper.append(postWrapper);
         postWrapper.append(commentTitle, commentWrapper);
         
+
         post.comments.map(comment => {
-
-
         commentEmail.setAttribute('href', '#')
             
         commentTitle.textContent = 'Comments:';
