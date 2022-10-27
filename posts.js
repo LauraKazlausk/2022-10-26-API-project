@@ -4,7 +4,9 @@
     const bodyElement = document.querySelector('body');
     const allPostsWrapper = document.createElement('div');
     bodyElement.append(allPostsWrapper);
-    
+    const userId = 1;
+
+
     fetch(`https://jsonplaceholder.typicode.com/posts?_limit=15&_embed=comments&_expand=user`)
     .then(res=>res.json())
     .then(data => {
@@ -40,7 +42,7 @@
 
         let postAuthorName = post.user.name;
         postAuthorLink.textContent = data.name;
-        postAuthorLink.innerHTML = `Author: <a href='#'> ${postAuthorName}</a>`;
+        postAuthorLink.innerHTML = `Author: <a href='./user.html'> ${postAuthorName}</a>`;
 
         postTitle.textContent = postTitleText;
         postText.textContent = postParagraphText;
@@ -61,6 +63,26 @@
     })
 })
 
+
+fetch(`https://jsonplaceholder.typicode.com/albums?_limit=15&_embed=photos&_expand=user`)
+
+.then(res=>res.json())
+.then(albums => {
+
+    let albumsWrapper = document.querySelector('#albums-wrapper');
+
+    albums.map(album => {
+        
+    let albumItem = document.createElement('div');
+    albumItem.classList.add('album-item');
+    
+    albumItem.innerHTML = `<h3 class="album-title"><a href="./album.html">${album.title}</a></h3>
+                            <div class="album-author">Album created by: ${album.user.name}</div>
+                            <img src="${album.photos[0].thumbnailUrl}" alt="${album.photos[0].title}">`;
+    
+    albumsWrapper.append(albumItem);
+    })
+})
     }
 init ();
 
